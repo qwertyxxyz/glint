@@ -17,7 +17,7 @@ jobs:
       - run: chmod +x GlintColorizer/gradlew
       - run: cd GlintColorizer && ./gradlew setupDecompWorkspace
       - run: cd GlintColorizer && ./gradlew build
-      - uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v4
         with:
           name: GlintColorizer-1.0.0
           path: GlintColorizer/build/libs/GlintColorizer-1.0.0.jar
