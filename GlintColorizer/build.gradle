@@ -1,0 +1,56 @@
+buildscript {
+    repositories {
+        mavenCentral()
+        maven { url = "https://maven.minecraftforge.net" }
+        maven { url = "https://maven.minecraftforge.net/snapshot" }
+    }
+    dependencies {
+        classpath "net.minecraftforge.gradle:ForgeGradle:2.3-SNAPSHOT"
+    }
+}
+
+apply plugin: "net.minecraftforge.gradle.forge"
+
+version      = "1.0.0"
+group        = "com.glintcolorizer"
+archivesBaseName = "GlintColorizer"
+
+sourceCompatibility = JavaVersion.VERSION_1_8
+targetCompatibility = JavaVersion.VERSION_1_8
+
+minecraft {
+    version  = "1.8.9-11.15.1.2318-1.8.9"
+    runDir   = "run"
+    mappings = "stable_22"
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    // ASM is bundled with Forge / launchwrapper
+}
+
+processResources {
+    inputs.property "version",   project.version
+    inputs.property "mcversion", project.minecraft.version
+
+    from(sourceSets.main.resources.srcDirs) {
+        include "mcmod.info"
+        expand "version": project.version, "mcversion": project.minecraft.version
+    }
+
+    from(sourceSets.main.resources.srcDirs) {
+        exclude "mcmod.info"
+    }
+}
+
+jar {
+    manifest {
+        attributes(
+            "FMLCorePlugin":                 "com.glintcolorizer.mod.asm.GlintLoadingPlugin",
+            "FMLCorePluginContainsFMLMod":   "true"
+        )
+    }
+}

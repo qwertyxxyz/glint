@@ -1,0 +1,9 @@
+# Glint Colorizer – English language file
+glintcolorizer.config.title=Glint Colorizer Configuration
+glintcolorizer.config.enabled=Enabled
+glintcolorizer.config.renderMode=Render Mode
+glintcolorizer.config.glintRed=Red (0-255)
+glintcolorizer.config.glintGreen=Green (0-255)
+glintcolorizer.config.glintBlue=Blue (0-255)
+glintcolorizer.config.glintAlpha=Alpha (0.0-1.0)
+glintcolorizer.config.glintSpeed=Animation Speed
