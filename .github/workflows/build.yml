@@ -10,13 +10,22 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+
       - uses: actions/setup-java@v3
         with:
           java-version: '8'
           distribution: 'temurin'
-      - run: chmod +x GlintColorizer/gradlew
-      - run: cd GlintColorizer && ./gradlew setupDecompWorkspace
-      - run: cd GlintColorizer && ./gradlew build
+
+      - uses: gradle/actions/setup-gradle@v3
+        with:
+          gradle-version: '4.9'
+
+      - run: cd GlintColorizer && gradle setupDecompWorkspace
+        timeout-minutes: 30
+
+      - run: cd GlintColorizer && gradle build
+        timeout-minutes: 15
+
       - uses: actions/upload-artifact@v4
         with:
           name: GlintColorizer-1.0.0
